@@ -1,0 +1,360 @@
+:root {
+    --ts-ink: #17323a;
+    --ts-primary: #0f766e;
+    --ts-primary-soft: #e3f2f0;
+    --ts-bg: #f4f6f6;
+    --ts-line: #dfe5e5;
+    --ts-sidebar-w: 260px;
+    --ts-nav-h: 64px;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: var(--ts-bg);
+    color: var(--ts-ink);
+}
+
+/* ---------- Logo ---------- */
+.ts-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--ts-ink);
+    text-decoration: none;
+}
+
+.ts-logo-mark {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    background: #fff;
+    /* latar putih, tidak lagi hijau */
+    border: 1px solid var(--ts-line);
+    border-radius: 10px;
+    overflow: hidden;
+    /* gambar terpotong mengikuti sudut membulat */
+    flex-shrink: 0;
+    /* kotak tidak menyempit saat ruang sempit */
+}
+
+.ts-logo-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* seluruh logo terlihat utuh */
+    display: block;
+}
+
+/* ---------- Navbar ---------- */
+.ts-navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: var(--ts-nav-h);
+    background: #fff;
+    border-bottom: 1px solid var(--ts-line);
+    z-index: 1030;
+}
+
+.ts-navbar .form-control {
+    background: var(--ts-bg);
+    border-color: transparent;
+}
+
+.ts-navbar .form-control:focus {
+    background: #fff;
+    border-color: var(--ts-primary);
+    box-shadow: 0 0 0 .2rem rgba(15, 118, 110, .15);
+}
+
+.btn-ts {
+    background: var(--ts-primary);
+    border-color: var(--ts-primary);
+    color: #fff;
+}
+
+.btn-ts:hover {
+    background: #0b5d57;
+    border-color: #0b5d57;
+    color: #fff;
+}
+
+.ts-toggle {
+    border: 1px solid var(--ts-line);
+    background: #fff;
+    color: var(--ts-ink);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 1.25rem;
+}
+
+.ts-toggle:hover {
+    background: var(--ts-primary-soft);
+}
+
+/* ---------- Sidebar ---------- */
+.ts-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--ts-sidebar-w);
+    background: #fff;
+    border-right: 1px solid var(--ts-line);
+    z-index: 1040;
+    overflow-y: auto;
+    transition: transform .25s ease;
+}
+
+.ts-sidebar-head {
+    height: var(--ts-nav-h);
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    border-bottom: 1px solid var(--ts-line);
+}
+
+.ts-menu {
+    padding: 1rem .85rem;
+}
+
+.ts-menu .nav-link {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    color: var(--ts-ink);
+    padding: .65rem .85rem;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.ts-menu .nav-link:hover {
+    background: var(--ts-bg);
+}
+
+.ts-menu .nav-link.active {
+    background: var(--ts-primary-soft);
+    color: var(--ts-primary);
+    font-weight: 600;
+}
+
+.ts-menu .chevron {
+    margin-left: auto;
+    transition: transform .2s;
+    font-size: .8rem;
+}
+
+.ts-menu [aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+}
+
+.ts-submenu {
+    margin: .15rem 0 .25rem 1.4rem;
+    padding-left: .6rem;
+    border-left: 2px solid var(--ts-line);
+}
+
+.ts-submenu .nav-link {
+    padding: .5rem .75rem;
+    font-weight: 400;
+    font-size: .93rem;
+}
+
+/* Latar gelap saat sidebar terbuka di layar kecil */
+.ts-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(23, 50, 58, .45);
+    z-index: 1035;
+}
+
+/* ---------- Konten ---------- */
+.ts-main {
+    margin-left: var(--ts-sidebar-w);
+    padding: calc(var(--ts-nav-h) + 1.5rem) 1.5rem 2rem;
+    transition: margin-left .25s ease;
+}
+
+.ts-navbar {
+    padding-left: calc(var(--ts-sidebar-w) + 1rem);
+    padding-right: 1rem;
+    transition: padding-left .25s ease;
+}
+
+/* Sidebar disembunyikan (desktop) */
+body.sidebar-hidden .ts-sidebar {
+    transform: translateX(-100%);
+}
+
+body.sidebar-hidden .ts-main {
+    margin-left: 0;
+}
+
+body.sidebar-hidden .ts-navbar {
+    padding-left: 1rem;
+}
+
+.ts-card {
+    background: #fff;
+    border: 1px solid var(--ts-line);
+    border-radius: 14px;
+}
+
+/* Slide promo */
+.ts-slider {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.ts-slide {
+    height: 320px;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.ts-slide-caption {
+    width: 100%;
+    padding: 3rem 1.75rem 1.75rem;
+    background: linear-gradient(to top, rgba(10, 25, 30, .8), rgba(10, 25, 30, 0));
+}
+
+.ts-slide-caption .btn {
+    background: #fff;
+    color: var(--ts-ink);
+    font-weight: 600;
+}
+
+.ts-slider .carousel-indicators {
+    margin-bottom: .6rem;
+}
+
+@media (max-width: 575.98px) {
+    .ts-slide {
+        height: 220px;
+    }
+}
+
+/* Kartu produk */
+.ts-product {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.ts-product:hover {
+    transform: scale(1.05);
+    box-shadow: 0 14px 32px rgba(23, 50, 58, .18);
+    position: relative;
+    z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ts-product {
+        transition: none;
+    }
+}
+
+.ts-product-img {
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    font-size: 3.5rem;
+    color: rgba(23, 50, 58, .55);
+}
+
+.ts-product-img {
+    overflow: hidden;
+    padding: 0;
+}
+
+.ts-product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* foto memenuhi kotak persegi, bagian lebih dipotong rapi */
+    display: block;
+}
+
+.ts-product-body {
+    padding: .9rem;
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    flex: 1;
+}
+
+.ts-product-body .btn {
+    margin-top: auto;
+}
+
+.ts-price {
+    font-weight: 700;
+}
+
+/* Tombol keranjang */
+.ts-cart {
+    position: relative;
+}
+
+.ts-cart .badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--ts-primary);
+    color: #fff;
+}
+
+/* ---------- Layar kecil: sidebar jadi overlay ---------- */
+@media (max-width: 991.98px) {
+    .ts-sidebar {
+        transform: translateX(-100%);
+        box-shadow: 0 0 30px rgba(0, 0, 0, .12);
+    }
+
+    .ts-main {
+        margin-left: 0;
+    }
+
+    .ts-navbar {
+        padding-left: 1rem;
+    }
+
+    body.sidebar-open .ts-sidebar {
+        transform: translateX(0);
+    }
+
+    body.sidebar-open .ts-backdrop {
+        display: block;
+    }
+
+    /* class desktop tidak berlaku di layar kecil */
+    body.sidebar-hidden .ts-sidebar {
+        transform: translateX(-100%);
+    }
+
+    body.sidebar-open.sidebar-hidden .ts-sidebar {
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ts-sidebar,
+    .ts-main,
+    .ts-navbar {
+        transition: none;
+    }
+}
